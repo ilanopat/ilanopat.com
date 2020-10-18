@@ -1,38 +1,41 @@
 import React from "react"
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
+import styled from 'styled-components';
+
 import {useTheme} from './ThemeProvider';
-import { Grid, Typography} from '@material-ui/core';
 
-const Header = ({ siteTitle }) => {
-  
-  const { themeMode } = useTheme();
+export const HeaderWrapper = styled.nav`
+    grid-column: 2 / span 12;
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
 
-  return(
-      <Grid item xs={12}>
-        <Typography variant="h3">
-          <Link
-            to="/"
-            style={{
-              color: themeMode === 'light'? 'black':'white',
-              textDecoration: `none`,
-            }}
-          >
-            {siteTitle}
+    img {
+        height: 30px
+    }
 
-          </Link>
-        </Typography>
-      </Grid>
-    )
+    @media ${props => props.theme.breakpoints.tablet}{
+        grid-column: 2 / span 6;
+    }
+`
+
+export const Header = () => {
+  const { handleThemeChange } = useTheme();
+
+  return (
+    <HeaderWrapper>
+      <Link to="/">
+        <img src="./peach.png" alt="logo" />
+      </Link>
+      <Link to="/about">
+        about
+      </Link>
+      <Link to="/blog">
+        blog
+      </Link>
+      <button onClick={handleThemeChange}>Toggle theme</button>
+    </HeaderWrapper>
+  )
 }
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
 
 export default Header

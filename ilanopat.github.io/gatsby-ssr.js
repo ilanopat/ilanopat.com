@@ -1,10 +1,13 @@
 /**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
+ * Implement Gatsby's Browser APIs in this file.
  *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
+ * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
 // You can delete this file if you're not using it
-import RootElement from './src/RootElement';
+import React from "react"
+import Provider from "./src/components/ThemeProvider"
 
-export const wrapRootElement = RootElement;
+export const wrapRootElement = ({ element }) => {
+  return <Provider>{element}</Provider>
+}

@@ -5,6 +5,9 @@
  */
 
 // You can delete this file if you're not using it
-import RootElement from './src/RootElement';
+import React from "react"
+import Provider from "./src/components/ThemeProvider"
 
-export const wrapRootElement = RootElement;
+export const wrapRootElement = ({ element }) => {
+  return <Provider>{element}</Provider>
+}
